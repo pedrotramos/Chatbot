@@ -12,7 +12,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 def loadModel():
     finalNumber = 0
     filename = f"model_v{finalNumber}.sav"
-    files = [f for f in os.listdir(".") if os.path.isfile(f)]
+    files = [f for f in os.listdir("./models") if os.path.isfile(f)]
     for f in files:
         if re.fullmatch(r"model_v\d+.sav", f):
             current = int(re.sub(r"model_v(\d+).sav", r"\1", filename))
@@ -20,8 +20,8 @@ def loadModel():
             if possible > current:
                 filename = f
                 finalNumber = possible
-    model = pickle.load(open(f"model_v{finalNumber}.sav", "rb"))
-    vectorizer = pickle.load(open(f"vectorizer_v{finalNumber}.sav", "rb"))
+    model = pickle.load(open(f"models/model_v{finalNumber}.sav", "rb"))
+    vectorizer = pickle.load(open(f"vectorizers/vectorizer_v{finalNumber}.sav", "rb"))
 
     return model, vectorizer
 
