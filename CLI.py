@@ -137,7 +137,7 @@ def findOutRealIntention(pred):
                     )
                 )
                 print("")
-                if intentionNumber in range(1, j):
+                if intentionNumber in range(1, j - 1):
                     print(
                         colored(
                             text="Obrigado por ajudar a melhorar o Foxbot!",
@@ -146,7 +146,7 @@ def findOutRealIntention(pred):
                     )
                     print("")
                     return possibleIntentions[intentionNumber - 1]
-                elif intentionNumber == j:
+                elif intentionNumber == j - 1:
                     print(
                         colored(
                             text="Obrigado por ajudar a melhorar o Foxbot!",
