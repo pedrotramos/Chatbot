@@ -5,8 +5,6 @@ import pandas as pd
 from textblob import TextBlob
 from spellchecker import SpellChecker
 from termcolor import colored
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.feature_extraction.text import CountVectorizer
 
 
 def loadModel():
@@ -45,6 +43,7 @@ def askForInput():
 
 def predNewSentence(txt, predModel, vectorizer):
     output_text = ""
+    txt = txt.replace("$", "dinheiro")
     try:
         if TextBlob(txt).detect_language() == "pt":
             sentence = ""
@@ -170,9 +169,9 @@ def findOutRealIntention(pred):
 
 
 def finalizeInteraction(df):
-    data = pd.read_excel("newSentences.xlsx", index_col=0)
+    data = pd.read_excel("new_sentences/newSentences.xlsx", index_col=0)
     data = data.append(df, ignore_index=True)
-    data.to_excel("newSentences.xlsx")
+    data.to_excel("new_sentences/newSentences.xlsx")
     print("")
     print(
         colored(text="Até logo! Espero ter ajudado!", color="yellow"),
