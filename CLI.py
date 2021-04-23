@@ -35,14 +35,14 @@ def loadModels():
         if modelType == "main":
             model = pickle.load(open(f"models/model_v{finalNumber}.sav", "rb"))
             vectorizer = pickle.load(
-                open(f"vectorizers/vectorizer_v{finalNumber}.sav", "rb")
+                open(f"vectorizers/vectorizer.sav", "rb")
             )
         else:
             model = pickle.load(
                 open(f"models/model_{modelType}_v{finalNumber}.sav", "rb")
             )
             vectorizer = pickle.load(
-                open(f"vectorizers/vectorizer_{modelType}_v{finalNumber}.sav", "rb")
+                open(f"vectorizers/vectorizer_{modelType}.sav", "rb")
             )
         models[modelType] = model
         vectorizers[modelType] = vectorizer
