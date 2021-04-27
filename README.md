@@ -29,7 +29,7 @@ Para um modelo probabilístico ser criado, é necessária a divisão do dataset 
 
 Caso a probabilidade de ser uma Intenção seja muito baixa, o bot responde o usuário com "Não sei".
 
-#### Novas intenções:
+#### Sub intenções:
 
 No arquivo ```baseSubModels.ipynb```, foram criados novas subdivisões no classificador de palavras. Para cada intenção anterior, duas intenções substituiram a mesma com o intuito de deixar o bot mais completo.
 
@@ -54,5 +54,5 @@ Ao perguntar seu saldo ao FoxBot, o usuário recebe um dado fictício gerado por
 #### Para rodar o chatbot:
 
 ```
-$ pthon CLI.py
+$ python CLI.py
 ```
