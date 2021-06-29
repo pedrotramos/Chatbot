@@ -1,58 +1,40 @@
-# Chatbot Insper: FoxBot
+# Foxbot: A Simple Chatbot With MultinomialNB
 
-## Projeto 2 de Processamento de Linguagem Natural
+### Objective:
 
-Pedro Ramos e Thiago Verardo
+This project aims to implement a simple chatbot capable of communicating with the user in portuguese to interpret and answer questions regarding three different intention classes.
 
-### Objetivo:
+### Intention Classes:
+- Weather: Obtain weather information
+- Bank Account: Check the account's balance
+- Interact with IoT devices: Interact with an IoT device
 
-Criar um chatbot capaz de se comunicar através de uma conversação em linguagem natural com o usuário, com o intuito de interpretar e responder perguntas a respeito do clima, conta bancária e interagir com dispositivos IoT da casa.
+### Dataset:
 
-### Implementação:
+First of all, the chatbot must be able to identify if a sentence falls into any of the categories above. If it does, then the chatbot must be able to accurately classify the sentence among the three possible intention classes. In case it doesn't, the chatbot must simply answer that it doesn't know how to respond to such request. To do so, with the help of a group of friends and colleagues, a labeled dataset with different sentences was created. The dataset contains more than 100 different examples for each of the possible intentions outlined above, along with more than 100 examples of phrases that do not fit into any of the intention classes expected by the chatbot.
 
-#### Dados:
+### Cleaning the Dataset:
 
-Primeiramente, um dataset com frases e suas devidas intenções foi desenvolvido coletivamente para que mais dados fossem adicionados, deixando o modelo mais rico.
+It's also very important to clean the dataset before training begins. Therefore, the punctuation was removed, every word was converted to lowercase and every occurrence of the word "foxbot" was also removed to avoid any possible bias caused by the chatbot's name. Once all of this was done, the base model was trained.
 
-#### Intenções:
-* Clima: Obter informações relativas ao clima
-* Conta Bancária: Consultar saldo da conta
-* Interagir com dispositivos IoT: Interagir com a luz ou o ar-condicionado
+### Intention Subclasses:
 
-#### Limpeza:
+The next step was to implement the concept of subclasses. Once the chatbot identified that a specific sentnece refers to the weather category, for example, it must be able to identify whether the user expects to obtain information related to temperature or related to rain. The subclasses considered in this project were:
 
-Com o dataset em mãos, o mesmo foi limpo através da tokenização e normalização de texto no arquivo ```baseModel.ipynb```. A limpeza é essencial para que os dados cheguem lapidados para o bot interpretar.
+- Weather: Temperature or Rain
+- Bank Account: Check the Savings Account balance or the Current Account balance
+- Interact with IoT devices: Interact with the light or the air-conditioner
 
-#### Separação dos dados em treinamento e teste:
+The chatbot also needed to learn to classify a sentence into one of the subclasses of the class it predicted for that specific sentence. In order to train the chatbot to do that, three new labeled datasets were created.
 
-Para um modelo probabilístico ser criado, é necessária a divisão do dataset original em teste e treinamento. No dataset de treinamento o bot entende o padrão e a resposta esperada e no de teste ele testa se seu entendimento é bom ou não, isso depende da probabilidade encontradada na frase analisada de ser a respeito de uma das intenções.
+### User Interface:
 
-Caso a probabilidade de ser uma Intenção seja muito baixa, o bot responde o usuário com "Não sei".
+In order for someone to use our chatbot, a simple UI was developed. It's only a CLI, but it enables the user to interact with foxbot, and it asks the user for feedback in order to acquire new data and further develop the classification models.
 
-#### Sub intenções:
-
-No arquivo ```baseSubModels.ipynb```, foram criados novas subdivisões no classificador de palavras. Para cada intenção anterior, duas intenções substituiram a mesma com o intuito de deixar o bot mais completo.
-
-* Clima: Temperatura e Chuva
-* Conta Bancária: Consultar saldo da poupança e Consultar saldo da conta-corrente
-* Interagir com dispositivos IoT: Ar-condicionado e Luz
-
-E da mesma maneira, foram separados em treinamento e teste para, enfim, serem analisadas e preditas pelo bot.
-
-#### Integração com o usuário:
-
-Para o usuário conseguir interagir de maneira simples com o bot, um cliente foi implementado no arquivo ```CLI.py```, que ao ser rodado já inicia uma conversação com o usuário. Ele aguarda uma resposta e, ao recebela, interpreta e devolve o resultado esperado.
-
-#### Realimentação da base de dados (aprendizado "online"):
-
-A realimentação da base de dados é boa para manter o modelo sempre melhor e com mais opções para prever um resultado. Como o projeto não entrará em circulação e as respostas ao bot serão sempre cofiáveis, implementamos no cliente a opção de dizer se a resposta dada pelo bot foi válida ou não, caso tenha sido a pergunta e a intenção são mandadas para um dataset que, no arquivo ```retraining.ipynb``` realimenta a base de dados inicial com os dados novos.
-
-#### Extra:
-
-Ao perguntar seu saldo ao FoxBot, o usuário recebe um dado fictício gerado por ele para a experiência ficar melhor, sem contar com os dados do clima do local em que o usuário está de acordo como google.
-
-#### Para rodar o chatbot:
+#### Using Foxbot:
 
 ```
-$ python CLI.py
+python CLI.py
 ```
+
+**Disclaimer:** The bank account data provided by the chatbot is fake and it isn't actually able to interact with IoT devices, but the weather information is real and obtained from Google using [Selenium](https://selenium-python.readthedocs.io/).
