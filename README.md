@@ -37,4 +37,4 @@ In order for someone to use our chatbot, a simple UI was developed. It's only a 
 python CLI.py
 ```
 
-**Disclaimer:** The bank account data provided by the chatbot is fake and it isn't actually able to interact with IoT devices, but the weather information is real and obtained from Google using [Selenium](https://selenium-python.readthedocs.io/).
+**Disclaimer:** The bank account data provided by the chatbot is fake and Foxbot isn't actually able to interact with IoT devices, but the weather information is real and obtained from Google using [Selenium](https://selenium-python.readthedocs.io/).
